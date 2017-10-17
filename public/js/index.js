@@ -7,11 +7,6 @@ socket.on('newMessage',function (message) {
     console.log(message);
 });
 
-socket.emit('createMessage', {
-    from: "Madhav",
-    text: "Hello Server"
-});
-
 socket.on('disconnect',function () {
     console.log('Disconnected from server');
 });
