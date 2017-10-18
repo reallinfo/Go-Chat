@@ -23,6 +23,7 @@
   "homepage": "https://github.com/MadhavBahlMD/Go-Chat#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "moment": "^2.15.1",
     "socket.io": "^1.7.4"
   },
   "devDependencies": {
