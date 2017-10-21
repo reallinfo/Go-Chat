@@ -22,6 +22,6 @@ describe('generateLocationMessage', () => {
         var message = generateLocationMessage(from,latitude,longitude);
 
         expect(message.createdAt).toBeA('number');
-        expect(message).toInclude({from,url});
+        expect(message).toInclude({from,url});  
     }); 
 });
