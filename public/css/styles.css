@@ -221,7 +221,7 @@
     }
   
     .chat__sidebar {
-      display: none;
+      /* display: none; */
     }
   
     .chat__footer {

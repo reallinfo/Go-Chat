@@ -62,6 +62,48 @@ socket.on('updateUserList', function (users) {
     jQuery('#users').html(ol);
 });
 
+socket.on('updatePrescription', function (prescript) {
+    var ol = jQuery('<ol></ol>');
+
+        ol.append(jQuery('<li></li>').text(prescript));
+
+
+    jQuery('#Pres').html(ol);
+});
+
+var locationButton = jQuery('#send-location');
+
+locationButton.on('click', function (e) {
+    
+    e.preventDefault();
+
+    var messageTextBox = jQuery('[name=message]');
+
+    socket.emit('createLocationMessage', {
+        text: messageTextBox.val()
+    },function () {
+        messageTextBox.val('');
+    });
+    
+    
+    // if (!navigator.geolocation) {
+    //     return alert('Geolocation not supported by your browser.');
+    // }
+
+    // locationButton.attr('disabled','disabled').text('Sending Location....');
+
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //     socket.emit('createLocationMessage', {
+    //         latitude: position.coords.latitude,
+    //         longitude: position.coords.longitude
+    //     });
+    //     locationButton.removeAttr('disabled').text('Send location');
+    // }, function () {
+    //     alert('Unable to fetch location!');
+    //     locationButton.removeAttr('disabled').text('Send location');
+    // });
+});
+
 socket.on('newLocationMessage', function (message) {
     var formattedTime = moment(message.createdAt).format('h:mm a');
     var template = jQuery('#location-message-template').html();
@@ -96,24 +138,5 @@ jQuery('#message-form').on('submit', function (e) {
     });
 });
 
-var locationButton = jQuery('#send-location');
 
-locationButton.on('click', function () {
-    if (!navigator.geolocation) {
-        return alert('Geolocation not supported by your browser.');
-    }
-
-    locationButton.attr('disabled','disabled').text('Sending Location....');
-
-    navigator.geolocation.getCurrentPosition(function (position) {
-        socket.emit('createLocationMessage', {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-        });
-        locationButton.removeAttr('disabled').text('Send location');
-    }, function () {
-        alert('Unable to fetch location!');
-        locationButton.removeAttr('disabled').text('Send location');
-    });
-});
 
