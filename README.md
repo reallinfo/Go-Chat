@@ -1,3 +1,5 @@
+<p align="center"><img src="logo/horizontal.png" alt="Go-Chat" height="150px"></p>
+
 **Go Chat**
 -------
 
